@@ -1,14 +1,33 @@
 type Query {
-    getProducts : [Product]
+    getProducts : [Product],
+    productById(id: ID!):Product
+    categories: [Category]
+    categoryById(id:ID!):Category
 
+
+}
+type Mutation {
+    createProduct(product:ProductInput):Product
+    deleteProduct(id:ID!):String
+    createCategory(category:CategoryInput):Category
+}
+
+input ProductInput {
+    name: String
+    price: Float
+    category: CategoryInput
+}
+input CategoryInput {
+    id : ID!
+    name: String
 }
 type Product {
     id: ID!
-    name: String!
-    price: Float!
+    name: String
+    price: Float
     category: Category
 }
 type Category {
     id: ID!
-    name: String!
+    name: String
 }
